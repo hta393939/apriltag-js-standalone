@@ -109,7 +109,8 @@ tests: $(APRILTAG_OBJS) $(OBJS) $(TEST_SRCS)
 
 apriltag_wasm.js: $(APRILTAG_SRCS) $(SRCS)
 	@mkdir -p $(WASMDIR)
-	emcc -Os -s MODULARIZE=1 -s 'EXPORT_NAME="AprilTagWasm"' -s WASM=1 -Iapriltag -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_FUNCTIONS="['_free']" -s EXTRA_EXPORTED_RUNTIME_METHODS='["cwrap", "getValue", "setValue"]' -o $(WASMDIR)/$@ $^
+	# change and add EXPORTED_RUNTIME_METHODS
+	emcc -Os -s MODULARIZE=1 -s 'EXPORT_NAME="AprilTagWasm"' -s WASM=1 -Iapriltag -s ALLOW_MEMORY_GROWTH=1 -s EXPORTED_FUNCTIONS="['_free']" -s EXPORTED_RUNTIME_METHODS='["cwrap", "getValue", "setValue", 'ccall','HEAP8','HEAPU8','HEAP32','HEAPU32','HEAPF32','lengthBytesUTF8','stringToUTF8','UTF8ToString']' -o $(WASMDIR)/$@ $^
 
 docs:
 	doxygen
