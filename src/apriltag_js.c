@@ -85,9 +85,9 @@ int atagjs_init()
     // NOTE: change
     //g_tf = tag36h11_create();
     //g_tf = tag25h9_create();
-    g_tf = tag16h5_create();
+    //g_tf = tag16h5_create();
     //g_tf = tagCircle21h7_create();
-    //g_tf = tagStandard41h12_create();
+    g_tf = tagStandard41h12_create();
 
     if (g_tf == NULL)
     {
@@ -121,9 +121,9 @@ int atagjs_destroy()
     // NOTE: change
     //tag36h11_destroy(g_tf);
     //tag25h9_destroy(g_tf);
-    tag16h5_destroy(g_tf);
+    //tag16h5_destroy(g_tf);
     //tagCircle21h7_destroy(g_tf);
-    //tagStandard41h12_destroy(g_tf);
+    tagStandard41h12_destroy(g_tf);
 
     if (g_img_buf != NULL)
         free(g_img_buf);
